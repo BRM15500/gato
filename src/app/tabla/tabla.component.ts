@@ -10,10 +10,19 @@ private currentPlayer: cuadroEnum;
 public board: cuadroEnum[][];
 private isGameOver: boolean;
 public statusMessage;
+startedGame: boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  initGame(){
+    this.startedGame = true;
     this.newGame();
+  }
+
+  exitGame(){
+    this.startedGame = false;
   }
 
   get gameOver(): boolean{
@@ -37,7 +46,7 @@ public statusMessage;
     if(!this.isGameOver && this.board[row][col] === cuadroEnum.EMPTY){
       this.board[row][col] = this.currentPlayer;
       if(this.isDraw()){
-        this.statusMessage = "its a draw!";
+        this.statusMessage = "Empate :(";
         this.isGameOver = true;
       } else if(this.isWin()){
         alert(this.statusMessage = "El jugador "+this.currentPlayer+" ganó");
